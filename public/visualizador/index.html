@@ -69,18 +69,31 @@
     </nav>
     <!-- AAAAAAAAAAAAAAAAAAAAAA -->
     <div class="container-fluid">
-      
+      <div class="row">
+        <div class="col-6">
+          <img src="" class="img-fluid imgPrincipal" alt="">
+          <button class="btn btn-primary">Boton</button>
+        </div>
+        <div class="col-6">
+          <div id="datos">
+            
+          </div>
+        </div>
+      </div>
     </div>
     <script>
       const urlParams = new URLSearchParams(window.location.search);
       const product = urlParams.get('id')
-      console.log(product);
       $.ajax({
         type: "get",
         url: "../../server/crud/searchById.php",
         data: {id:product},
         dataType: "json",
         success: function (response) {
+          $(".imgPrincipal").attr({
+            alt:response.nombre,
+            src:response.imagen
+          }).css({width:"400px",height:"400px",border:"1px solid red"})
           console.log(response);
         }
       });

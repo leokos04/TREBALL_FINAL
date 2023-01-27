@@ -2,9 +2,9 @@
  class Connection {
   
   private $server = "localhost";
-  private $user = "root";
-  private $password = "bbdd";
-  private $db = "ldk_spotiuwu";
+  private $user = "leokos";
+  private $password = "329LasaLa";
+  private $db = "ldk_prototipo";
 
   public function getConnection()
   {
