@@ -1,0 +1,32 @@
+*{
+  box-sizing: border-box;
+}
+
+.izquierda,
+.derecha {
+  height: 100vh;
+  overflow-x: hidden;
+}
+.izquierda{
+  height: auto;
+}
+
+.derecha {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.carta{
+  margin: 0 auto;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border: 1px solid black;
+  width: 200px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .izquierda {
+    height: 0 auto;
+  }
+}
