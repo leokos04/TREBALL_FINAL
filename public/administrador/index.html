@@ -1,69 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
 
-    <!-- default styles -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.3.js"
-      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-      crossorigin="anonymous"
-    ></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="../css/index.css" />
-  </head>
-  <body>
-    <nav
-      class="navbar navbar-expand-lg navbar-light"
-      style="background-color: #2e6f95"
-    >
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">SpotiUwU</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="text-align: center;">
-          <ul class="navbar-nav me-auto mt-1 mb-3 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="../">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../usuario/">Perfil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Administrador</a>
-            </li>
-          </ul>
-        </div>
+  <!-- default styles -->
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../css/index.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #2e6f95">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">SpotiUwU</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="text-align: center;">
+        <ul class="navbar-nav me-auto mt-1 mb-3 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../usuario/">Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Administrador</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-    <!-- AAAAAAAAAAAAAAAAAAAAAA -->
-  
-    <script>
-     
-    </script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    </div>
+  </nav>
+  <!-- AAAAAAAAAAAAAAAAAAAAAA -->
+
+  <table id="tablaSQL" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Grupo</th>
+        <th scope="col">Pais</th>
+        <th scope="col">Fecha Creacion</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Imagen</th>
+        <th scope="col">Mp3</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <script>
+    const tablasPintar = (arrObj) => {
+      for (let i = 0; i < arrObj.length; i++) {
+        $("#tablaSQL tbody").append(
+          `<tr>
+        <td>${arrObj[i].id}</td>
+        <td>${arrObj[i].nombre}</td>
+        <td>${arrObj[i].grupo}</td>
+        <td>${arrObj[i].pais}</td>
+        <td>${arrObj[i].fecha_creacion}</td>
+        <td>${arrObj[i].cantidad}</td>
+        <td>${arrObj[i].imagen}</td>
+        <td>${arrObj[i].mp3}</td>
+        <td><button class='delete' value='${arrObj[i].id}'>Eliminar</button></td>
+        <td><button class='editar' value='${arrObj[i].id}'>Editar</button></td>
+        </tr>`
+        );
+      }
+      $(".delete").click(function () {
+        if (confirm("¿Estas seguro que quieres eliminarlo?")) {
+          window.location = `../../server/crud/deleteById.php?id=${$(this).val()}`;
+          location.reload()
+        }
+      });
+    }
+
+
+    $.ajax({
+      type: "get",
+      url: "../../server/crud/showCancion.php",
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        tablasPintar(response)
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

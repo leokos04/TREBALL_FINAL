@@ -1,11 +1,8 @@
 <?php
-include("../conexion/conexion.php");
-include("../conexion/crud.php");
-include("../conexion/error.php");
+include_once __DIR__ . "/../constant.php";
+require_once ROOT_PATH ."connection/conexion.php";
+require_once ROOT_PATH ."crud/crud.php";
 
 $id = $_GET["id"];
 $dataBase = new Crud();
-$dataBase->deleteCoches($id);
-
-
-header("location:../index.html");
+$dataBase->deleteCancion($id);

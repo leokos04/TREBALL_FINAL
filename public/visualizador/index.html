@@ -72,11 +72,10 @@
       <div class="row">
         <div class="col-6">
           <img src="" class="img-fluid imgPrincipal" alt="">
-          <button class="btn btn-primary">Boton</button>
         </div>
         <div class="col-6">
           <div id="datos">
-            
+            <button class="btn btn-primary">Boton</button>
           </div>
         </div>
       </div>
@@ -94,6 +93,7 @@
             alt:response.nombre,
             src:response.imagen
           }).css({width:"400px",height:"400px",border:"1px solid red"})
+          $(`<h1>${response.nombre}</h1><h3>${response.grupo}</h3><p>Creada en ${response.fecha_creacion} en ${response.pais}</p><p>Cantidad disponible : ${response.cantidad}</p>`).appendTo("#datos")
           console.log(response);
         }
       });

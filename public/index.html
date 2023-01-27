@@ -122,16 +122,16 @@
     </div>
     <script>
       $.ajax({
-        type: "POST",
+        type: "get",
         url: "../server/crud/showCancion.php",
         dataType: "json",
         success: function (response) {
           console.log(response);
           Array.from(response).forEach((ele) => {
             $(
-              `<div class='col-md-3 carta'><p>${ele.nombre}</p><h3>${ele.grupo} ${ele.fecha_creacion}</h3><button class='btn previsualizar text-light' style='background-color:#b7094c;'>Previsualizar</button></div>`
+              `<div class='col-md-3 carta'><p>${ele.nombre}</p><h3>${ele.grupo} ${ele.fecha_creacion}</h3><button class='btn previsualizar${ele.id} text-light' style='background-color:#b7094c;'>Previsualizar</button></div>`
             ).appendTo(".listaMusica");
-            $(".previsualizar").click(function () { 
+            $(`.previsualizar${ele.id}`).click(function () { 
               window.location.href = "./visualizador/index.html?id="+ele.id
              })
           });
