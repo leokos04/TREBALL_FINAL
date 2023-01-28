@@ -21,9 +21,10 @@
   padding-top: 10px;
   padding-bottom: 20px;
   border: 1px solid black;
-  width: 200px;
   text-align: center;
+  width: 400px;
 }
+
 
 @media only screen and (max-width: 768px) {
   .izquierda {

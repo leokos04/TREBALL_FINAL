@@ -129,7 +129,7 @@
           console.log(response);
           Array.from(response).forEach((ele) => {
             $(
-              `<div class='col-md-3 carta'><p>${ele.nombre}</p><h3>${ele.grupo} ${ele.fecha_creacion}</h3><button class='btn previsualizar${ele.id} text-light' style='background-color:#b7094c;'>Previsualizar</button></div>`
+              `<div class='col-md-3 carta' style='width:400px;'><img src='../server/img/${ele.imagen}' width='200px'><p>${ele.nombre}</p><h3>${ele.grupo} ${ele.fecha_creacion}</h3><button class='btn previsualizar${ele.id} text-light' style='background-color:#b7094c;'>Previsualizar</button></div>`
             ).appendTo(".listaMusica");
             $(`.previsualizar${ele.id}`).click(function () { 
               window.location.href = "./visualizador/index.html?id="+ele.id
