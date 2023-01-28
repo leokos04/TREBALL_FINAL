@@ -42,8 +42,8 @@
     </div>
   </nav>
   <!-- TERMINA MENU -->
-  <div class="container-fluid d-flex justify-content-center">
 
+  <div class="container-fluid d-flex justify-content-center">
     <!-- AÑADIR FORMULARIO  -->
     <form id="form-add" enctype="multipart/form-data">
       <div class="form-group">
@@ -104,7 +104,6 @@
   </div>
   <script>
     $(document).ready(function () {
-      
       const tablasPintar = (arrObj) => {
         $("#tablaSQL tbody").html("")
         for (let i = 0; i < arrObj.length; i++) {
@@ -123,10 +122,16 @@
         </tr>`
           );
         }
-        $(".delete").click(function () {
+        $("#tablaSQL").on("click", ".delete", function () {
           if (confirm("¿Estas seguro que quieres eliminarlo?")) {
-            window.location = `../../server/crud/deleteById.php?id=${$(this).val()}`;
-            location.reload()
+            $.ajax({
+              type: "post",
+              url: "../../server/crud/deleteById.php",
+              data: { id: $(this).val() },
+              success: function (response) {
+                recargaTabla()
+              }
+            });
           }
         });
       }
@@ -147,7 +152,6 @@
       $(".btnadd").click(function (e) {
         //PARA RECOGER LOS ARCHIVOS INCLUIDOS
         var formData = new FormData($("#form-add")[0]);
-
         $.ajax({
           type: "post",
           url: "../../server/crud/anadirCancion.php",
@@ -165,6 +169,9 @@
           },
         });
       });
+
+
+
 
       //fin ready
     })
