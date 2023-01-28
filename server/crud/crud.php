@@ -19,10 +19,10 @@ class Crud{
 
     return $result;
   }
-  public function addCancion($nombre,$grupo,$pais,$fecha,$cantidad){
+  public function addCancion($nombre,$grupo,$pais,$fecha,$cantidad,$img,$mp3){
     $sqlconnection = new Connection();
     $mySQL = $sqlconnection->getConnection();
-    $mySQL->query("INSERT INTO `canciones` (`id`, `nombre`, `grupo`, `pais`, `fecha_creacion`, `cantidad`) VALUES (NULL, '$nombre', '$grupo', '$pais', '$fecha', '$cantidad');");
+    $mySQL->query("INSERT INTO `canciones` (`id`, `nombre`, `grupo`, `pais`, `fecha_creacion`, `cantidad`,`imagen`,`mp3`) VALUES (NULL, '$nombre', '$grupo', '$pais', '$fecha', '$cantidad','$img','$mp3');");
   }
   public function editCancion($id,$nombre,$grupo,$pais,$fecha,$cantidad)
   {
