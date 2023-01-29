@@ -105,7 +105,9 @@
   <script>
     $(document).ready(function () {
 
+
       const tablasPintar = (arrObj) => {
+        //Nota para el futuro regranjero de yo la de quitar todos los eventos para luego añadirlos y no se repitan conocetela ^^
         $("#tablaSQL").off("click");
 
         $("#tablaSQL tbody").empty().html("")
@@ -128,8 +130,6 @@
         }
         //DELETE TABLE  ---->
         $("#tablaSQL").on("click", ".delete", function () {
-          console.log("ENTRA",$(this).val());
-
           if (confirm("¿Estas seguro que quieres eliminarlo?")) {
             $.ajax({
               type: "post",
@@ -143,20 +143,51 @@
         });
         //DELETE TABLE  ---->
 
+
+
         $("#tablaSQL").on("click", ".editar", function () {
-          console.log($(this).val());
+          $.ajax({
+            type: "get",
+            url: "../../server/crud/searchById.php",
+            data: { id: $(this).val() },
+            dataType: "json",
+            success: function (response) {
+              $("#id-ed").val(response.id)
+              $("#name-ed").val(response.nombre)
+              $("#artist-ed").val(response.grupo)
+              $("#country-ed").val(response.pais)
+              $("#date-ed").val(response.fecha_creacion)
+              $("#quantity-ed").val(response.cantidad)
+              $("#img-text-ed").val(response.imagen)
+              $("#mp3-text-ed").val(response.mp3)
+
+              $(".img-previsualizar").empty().append(`
+              <p>Imagen actual :</p>
+              <img src='../../server/img/${response.imagen}' width='100px' style='border:1px solid black;'>
+              `)
+              $(".audio-add-prueba").empty().append(`
+              <p>Audio acutal :</p>
+              <audio controls>
+                <source class='audio-ed' src="../../server/music/${response.mp3}" type="audio/mpeg">
+              </audio>`)
+            }
+          });
           $("#add-file-dialog").dialog("open");
+
         });
 
         $("#add-file-dialog").dialog({
           autoOpen: false,
-          width: 400,
+          width: 600,
           modal: true,
           buttons: {
-            "Add file": function () {
-              let fileName = $("#file-name").val();
+            "Edit music": function () {
+              var formData = new FormData($("#form-edit")[0]);
+              console.log(formData);
+
             },
             Cancel: function () {
+              $("audio source.audio-ed").remove();
               $(this).dialog("close");
             }
           }
@@ -205,34 +236,40 @@
     })
   </script>
   <div id="add-file-dialog" title="Editar">
-    <form id="form-edit" enctype="multipart/form-data">
+    <form id="form-edit" class="text-center" enctype="multipart/form-data">
+      <input type="hidden" name="id" id="id-ed" value="">
+      <input type="hidden" name="id" id="img-text-ed" value="">
+      <input type="hidden" name="id" id="mp3-text-ed" value="">
       <div class="form-group">
         <label for="name">Nombre de la canción</label>
-        <input type="text" class="form-control" id="name" name="name">
+        <input type="text" class="form-control" id="name-ed" name="name">
       </div>
       <div class="form-group">
         <label for="artist">Artista</label>
-        <input type="text" class="form-control" id="artist" name="artist">
+        <input type="text" class="form-control" id="artist-ed" name="artist">
       </div>
       <div class="form-group">
         <label for="country">País</label>
-        <input type="text" class="form-control" id="country" name="country">
+        <input type="text" class="form-control" id="country-ed" name="country">
       </div>
       <div class="form-group">
         <label for="date">Fecha de creación</label>
-        <input type="date" class="form-control" id="date" name="date">
+        <input type="date" class="form-control" id="date-ed" name="date">
       </div>
       <div class="form-group">
         <label for="quantity">Cantidad</label>
-        <input type="number" class="form-control" id="quantity" name="quantity" min="1">
+        <input type="number" class="form-control" id="quantity-ed" name="quantity" min="1">
       </div>
       <div class="form-group">
         <label for="image">Imagen</label>
-        <input type="file" class="form-control-file" id="image" name="image">
+        <input type="file" class="form-control-file" id="image-ed" name="image">
+        <div class="img-previsualizar mx-auto"></div>
       </div>
+      <br><br>
       <div class="form-group">
         <label for="mp3">Archivo MP3</label>
-        <input type="file" class="form-control-file" id="mp3" name="mp3">
+        <input type="file" class="form-control-file" id="mp3-ed" name="mp3">
+        <div class="audio-add-prueba mx-auto"></div>
       </div>
       <br>
     </form>

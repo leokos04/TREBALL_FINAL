@@ -15,3 +15,9 @@ $mp3 = $_FILES["mp3"];
 
 $ddbb = new Crud();
 $result = $ddbb->editCancion($id, $name, $artist, $country, $date, $quantity, $image["name"], $mp3["name"]);
+
+if($result){
+  echo true;
+  exit();
+}
+echo false;

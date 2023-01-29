@@ -9,4 +9,6 @@ if (is_numeric($id)) {
   $sql = "SELECT * FROM canciones where id=$id";
   $coches = $dataBase->getRows($sql);
   echo json_encode(mysqli_fetch_assoc($coches));
+  exit();
 }
+echo false;
