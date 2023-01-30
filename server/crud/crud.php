@@ -35,4 +35,11 @@ class Crud
     $sql = "DELETE FROM canciones WHERE id='$data'";
     $mySQL->query($sql);
   }
+  public function loginUser($data)
+  {
+    $sqlconnection = new Connection();
+    $mySQL = $sqlconnection->getConnection();
+    $sql = "SELECT FROM usuarios where email LIKE $data[0] AND pass";
+    $mySQL->query($sql);
+  }
 }

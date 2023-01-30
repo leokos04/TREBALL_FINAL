@@ -1,119 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <!-- default styles -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
+      integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
 
-  <!-- default styles -->
-  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-    crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
-    integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
 
-  <link rel="stylesheet" href="./css/index.css" />
-</head>
+  <body>
+    <!-- EMPIEZA MENU -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="background-color: #2e6f95"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../">SpotiUwU</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse"
+          id="navbarSupportedContent"
+          style="text-align: center"
+        >
+          <ul class="navbar-nav me-auto mt-1 mb-3 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="../">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../usuario/">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Administrador</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- TERMINA MENU -->
 
-<body>
-  <!-- EMPIEZA MENU -->
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #2e6f95">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../">SpotiUwU</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="text-align: center;">
-        <ul class="navbar-nav me-auto mt-1 mb-3 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../usuario/">Perfil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Administrador</a>
-          </li>
-        </ul>
-      </div>
+      <!-- AÑADIR FORMULARIO  -->
+      <form id="form-add" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="name">Nombre de la canción</label>
+          <input type="text" class="form-control" id="name" name="name" />
+        </div>
+        <div class="form-group">
+          <label for="artist">Artista</label>
+          <input type="text" class="form-control" id="artist" name="artist" />
+        </div>
+        <div class="form-group">
+          <label for="country">País</label>
+          <input type="text" class="form-control" id="country" name="country" />
+        </div>
+        <div class="form-group">
+          <label for="date">Fecha de creación</label>
+          <input type="date" class="form-control" id="date" name="date" />
+        </div>
+        <div class="form-group">
+          <label for="quantity">Cantidad</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            name="quantity"
+            min="1"
+          />
+        </div>
+        <div class="form-group">
+          <label for="image">Imagen</label>
+          <input
+            type="file"
+            class="form-control-file"
+            id="image"
+            name="image"
+          />
+        </div>
+        <div class="form-group">
+          <label for="mp3">Archivo MP3</label>
+          <input type="file" class="form-control-file" id="mp3" name="mp3" />
+        </div>
+        <br />
+        <button type="button" class="btn btnadd btn-primary">
+          Añadir canción
+        </button>
+      </form>
+      <!-- AÑADIR FORMULARIO  -->
+      <!-- ! PARA MOSTRAR TABLA -->
+      <br /><br />
+      <br /><br />
+      <table id="tablaSQL" class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Grupo</th>
+            <th scope="col">Pais</th>
+            <th scope="col">Fecha Creacion</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Mp3</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
-  </nav>
-  <!-- TERMINA MENU -->
+    <script>
+      $(document).ready(function () {
+        const tablasPintar = (arrObj) => {
+          //Nota para el futuro regranjero de yo la de quitar todos los eventos para luego añadirlos y no se repitan conocetela ^^
+          $("#tablaSQL").off("click");
 
-  <div class="container-fluid ">
-    <!-- AÑADIR FORMULARIO  -->
-    <form id="form-add" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="name">Nombre de la canción</label>
-        <input type="text" class="form-control" id="name" name="name">
-      </div>
-      <div class="form-group">
-        <label for="artist">Artista</label>
-        <input type="text" class="form-control" id="artist" name="artist">
-      </div>
-      <div class="form-group">
-        <label for="country">País</label>
-        <input type="text" class="form-control" id="country" name="country">
-      </div>
-      <div class="form-group">
-        <label for="date">Fecha de creación</label>
-        <input type="date" class="form-control" id="date" name="date">
-      </div>
-      <div class="form-group">
-        <label for="quantity">Cantidad</label>
-        <input type="number" class="form-control" id="quantity" name="quantity" min="1">
-      </div>
-      <div class="form-group">
-        <label for="image">Imagen</label>
-        <input type="file" class="form-control-file" id="image" name="image">
-      </div>
-      <div class="form-group">
-        <label for="mp3">Archivo MP3</label>
-        <input type="file" class="form-control-file" id="mp3" name="mp3">
-      </div>
-      <br>
-      <button type="button" class="btn btnadd btn-primary">Añadir canción</button>
-    </form>
-    <!-- AÑADIR FORMULARIO  -->
-    <!-- ! PARA MOSTRAR TABLA -->
-    <br><br>
-    <br><br>
-    <table id="tablaSQL" class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Grupo</th>
-          <th scope="col">Pais</th>
-          <th scope="col">Fecha Creacion</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Imagen</th>
-          <th scope="col">Mp3</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
-  <script>
-    $(document).ready(function () {
-
-
-      const tablasPintar = (arrObj) => {
-        //Nota para el futuro regranjero de yo la de quitar todos los eventos para luego añadirlos y no se repitan conocetela ^^
-        $("#tablaSQL").off("click");
-
-        $("#tablaSQL tbody").empty().html("")
-        for (let i = 0; i < arrObj.length; i++) {
-          $("#tablaSQL tbody").append(
-            `<tr>
+          $("#tablaSQL tbody").empty().html("");
+          for (let i = 0; i < arrObj.length; i++) {
+            $("#tablaSQL tbody").append(
+              `<tr>
         <td>${arrObj[i].id}</td>
         <td>${arrObj[i].nombre}</td>
         <td>${arrObj[i].grupo}</td>
@@ -125,158 +162,182 @@
         <td><button class='delete' value='${arrObj[i].id}'>Eliminar</button></td>
         <td><button class='editar' value='${arrObj[i].id}'>Editar</button></td>
         </tr>`
-          );
-
-        }
-        //DELETE TABLE  ---->
-        $("#tablaSQL").on("click", ".delete", function () {
-          if (confirm("¿Estas seguro que quieres eliminarlo?")) {
-            $.ajax({
-              type: "post",
-              url: "../../server/crud/deleteById.php",
-              data: { id: $(this).val() },
-              success: function (response) {
-                recargaTabla()
-              }
-            });
+            );
           }
-        });
-        //DELETE TABLE  ---->
-
-
-
-        $("#tablaSQL").on("click", ".editar", function () {
-          $.ajax({
-            type: "get",
-            url: "../../server/crud/searchById.php",
-            data: { id: $(this).val() },
-            dataType: "json",
-            success: function (response) {
-              $("#id-ed").val(response.id)
-              $("#name-ed").val(response.nombre)
-              $("#artist-ed").val(response.grupo)
-              $("#country-ed").val(response.pais)
-              $("#date-ed").val(response.fecha_creacion)
-              $("#quantity-ed").val(response.cantidad)
-              $("#img-text-ed").val(response.imagen)
-              $("#mp3-text-ed").val(response.mp3)
-
-              $(".img-previsualizar").empty().append(`
-              <p>Imagen actual :</p>
-              <img src='../../server/img/${response.imagen}' width='100px' style='border:1px solid black;'>
-              `)
-              $(".audio-add-prueba").empty().append(`
-              <p>Audio acutal :</p>
-              <audio controls>
-                <source class='audio-ed' src="../../server/music/${response.mp3}" type="audio/mpeg">
-              </audio>`)
+          //DELETE TABLE  ---->
+          $("#tablaSQL").on("click", ".delete", function () {
+            if (confirm("¿Estas seguro que quieres eliminarlo?")) {
+              $.ajax({
+                type: "post",
+                url: "../../server/crud/deleteById.php",
+                data: { id: $(this).val() },
+                success: function (response) {
+                  recargaTabla();
+                },
+              });
             }
           });
-          $("#add-file-dialog").dialog("open");
+          //DELETE TABLE  ---->
 
-        });
+          $("#tablaSQL").on("click", ".editar", function () {
+            $.ajax({
+              type: "get",
+              url: "../../server/crud/searchById.php",
+              data: { id: $(this).val() },
+              dataType: "json",
+              success: function (response) {
+                $("#id-ed").val(response.id);
+                $("#name-ed").val(response.nombre);
+                $("#artist-ed").val(response.grupo);
+                $("#country-ed").val(response.pais);
+                $("#date-ed").val(response.fecha_creacion);
+                $("#quantity-ed").val(response.cantidad);
+                $("#img-text-ed").val(response.imagen);
+                $("#mp3-text-ed").val(response.mp3);
 
-        $("#add-file-dialog").dialog({
-          autoOpen: false,
-          width: 600,
-          modal: true,
-          buttons: {
-            "Edit music": function () {
-              var formData = new FormData($("#form-edit")[0]);
-              console.log(formData);
+                $(".img-previsualizar").empty().append(`
+              <p>Imagen actual :</p>
+              <img alt='${response.imagen}' src='../../server/img/${response.imagen}' width='100px' style='border:1px solid black;'>
+              `);
+                $(".audio-add-prueba").empty().append(`
+              <p>Audio acutal :</p>
+              <audio controls>
+                <source id='${response.mp3}' class='audio-ed' src="../../server/music/${response.mp3}" type="audio/mpeg">
+              </audio>`);
+              },
+            });
+            $("#add-file-dialog").dialog("open");
+          });
 
+          $("#add-file-dialog").dialog({
+            autoOpen: false,
+            width: 600,
+            modal: true,
+            buttons: {
+              "Edit music": function () {
+                var formData = new FormData($("#form-edit")[0]);
+
+          
+                console.log(formData);
+                console.log("");
+                formData.forEach(ele=>{
+                  console.log(ele);
+                })
+                // $.ajax({
+                //   type: "post",
+                //   url: "../../server/crud/editarCancion.php",
+                //   data: formData,
+                //   success: function (response) {
+
+                //   }
+                // });
+              },
+              Cancel: function () {
+                $(".audio-add-prueba").empty();
+                $(this).dialog("close");
+              },
             },
-            Cancel: function () {
-              $(".audio-add-prueba").empty();
-              $(this).dialog("close");
-            }
-          }
+          });
+        };
+
+        const recargaTabla = () => {
+          $.ajax({
+            type: "get",
+            url: "../../server/crud/showCancion.php",
+            dataType: "json",
+            success: function (response) {
+              tablasPintar(response);
+            },
+          });
+        };
+        recargaTabla();
+
+        $(".btnadd").click(function (e) {
+          //PARA RECOGER LOS ARCHIVOS INCLUIDOS
+          var formData = new FormData($("#form-add")[0]);
+          $.ajax({
+            type: "post",
+            url: "../../server/crud/anadirCancion.php",
+            data: formData,
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (response) {
+              console.log(response);
+              $("#form-add").trigger("reset");
+              recargaTabla();
+            },
+            error: function (err) {
+              console.log(`${err.statusText} , ${err.responseText}`);
+            },
+          });
         });
 
-      }
-
-      const recargaTabla = () => {
-        $.ajax({
-          type: "get",
-          url: "../../server/crud/showCancion.php",
-          dataType: "json",
-          success: function (response) {
-            tablasPintar(response)
-          }
-        });
-      };
-      recargaTabla();
-
-
-      $(".btnadd").click(function (e) {
-        //PARA RECOGER LOS ARCHIVOS INCLUIDOS
-        var formData = new FormData($("#form-add")[0]);
-        $.ajax({
-          type: "post",
-          url: "../../server/crud/anadirCancion.php",
-          data: formData,
-          contentType: false,
-          processData: false,
-          cache: false,
-          success: function (response) {
-            console.log(response);
-            $("#form-add").trigger("reset");
-            recargaTabla();
-          },
-          error: function (err) {
-            console.log(`${err.statusText} , ${err.responseText}`);
-          },
-        });
+        //fin ready
       });
-
-
-
-
-      //fin ready
-    })
-  </script>
-  <div id="add-file-dialog" title="Editar">
-    <form id="form-edit" class="text-center" enctype="multipart/form-data">
-      <input type="hidden" name="id" id="id-ed" value="">
-      <input type="hidden" name="id" id="img-text-ed" value="">
-      <input type="hidden" name="id" id="mp3-text-ed" value="">
-      <div class="form-group">
-        <label for="name">Nombre de la canción</label>
-        <input type="text" class="form-control" id="name-ed" name="name">
-      </div>
-      <div class="form-group">
-        <label for="artist">Artista</label>
-        <input type="text" class="form-control" id="artist-ed" name="artist">
-      </div>
-      <div class="form-group">
-        <label for="country">País</label>
-        <input type="text" class="form-control" id="country-ed" name="country">
-      </div>
-      <div class="form-group">
-        <label for="date">Fecha de creación</label>
-        <input type="date" class="form-control" id="date-ed" name="date">
-      </div>
-      <div class="form-group">
-        <label for="quantity">Cantidad</label>
-        <input type="number" class="form-control" id="quantity-ed" name="quantity" min="1">
-      </div>
-      <div class="form-group">
-        <label for="image">Imagen</label>
-        <input type="file" class="form-control-file" id="image-ed" name="image">
-        <div class="img-previsualizar mx-auto"></div>
-      </div>
-      <br><br>
-      <div class="form-group">
-        <label for="mp3">Archivo MP3</label>
-        <input type="file" class="form-control-file" id="mp3-ed" name="mp3">
-        <div class="audio-add-prueba mx-auto"></div>
-      </div>
-      <br>
-    </form>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-</body>
-
+    </script>
+    <div id="add-file-dialog" title="Editar">
+      <form id="form-edit" class="text-center" enctype="multipart/form-data">
+        <input type="hidden" name="id" id="id-ed" value="" />
+        <div class="form-group">
+          <label for="name">Nombre de la canción</label>
+          <input type="text" class="form-control" id="name-ed" name="name" />
+        </div>
+        <div class="form-group">
+          <label for="artist">Artista</label>
+          <input
+            type="text"
+            class="form-control"
+            id="artist-ed"
+            name="artist"
+          />
+        </div>
+        <div class="form-group">
+          <label for="country">País</label>
+          <input
+            type="text"
+            class="form-control"
+            id="country-ed"
+            name="country"
+          />
+        </div>
+        <div class="form-group">
+          <label for="date">Fecha de creación</label>
+          <input type="date" class="form-control" id="date-ed" name="date" />
+        </div>
+        <div class="form-group">
+          <label for="quantity">Cantidad</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity-ed"
+            name="quantity"
+            min="1"
+          />
+        </div>
+        <div class="form-group">
+          <label for="image">Imagen</label>
+          <input
+            type="file"
+            class="form-control-file"
+            id="image-ed"
+            name="image"
+          />
+          <div class="img-previsualizar mx-auto"></div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+          <label for="mp3">Archivo MP3</label>
+          <input type="file" class="form-control-file" id="mp3-ed" name="mp3" />
+          <div class="audio-add-prueba mx-auto"></div>
+        </div>
+        <br />
+      </form>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
