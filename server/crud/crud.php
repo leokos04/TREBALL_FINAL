@@ -39,7 +39,8 @@ class Crud
   {
     $sqlconnection = new Connection();
     $mySQL = $sqlconnection->getConnection();
-    $sql = "SELECT FROM usuarios where email LIKE $data[0] AND pass";
-    $mySQL->query($sql);
+    $sql = "SELECT * FROM `usuarios` WHERE email = '$data[0]' and user_pass = '$data[1]'";
+    return $mySQL->query($sql);
+    
   }
 }

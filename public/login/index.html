@@ -1,105 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
 
-    <!-- default styles -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.3.js"
-      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="./index.css" />
-  </head>
-  <body>
-    <div class="main">
-      <input type="checkbox" id="chk" aria-hidden="true" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-      <div class="signup">
-        <form id="formRegister">
-          <label for="chk" aria-hidden="true">Sign up</label>
-          <input type="text" name="txt" placeholder="User name" required />
-          <input type="email" name="email" placeholder="Email" required />
-          <input type="password" name="pswd" placeholder="Password" required />
-          <input
-            type="password"
-            name="pswdConf"
-            placeholder="Confirm password"
-            required
-          />
-          <button type="button" class="btnRegister" btn>Sign up</button>
-        </form>
-      </div>
+  <!-- default styles -->
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./index.css" />
+</head>
 
-      <div class="login">
-        <form id="formLogin">
-          <label for="chk" aria-hidden="true">Login</label>
-          <input
-            type="email"
-            id="emailLogin"
-            name="email"
-            placeholder="Email"
-            required
-          />
-          <input type="password" name="pswd" placeholder="Password" required />
-          <button type="button" class="btnLogin">Login</button>
-        </form>
-      </div>
+<body>
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true" />
+
+    <div class="signup">
+      <form id="formRegister">
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="text" name="txt" placeholder="User name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="pswd" placeholder="Password" required />
+        <input type="password" name="pswdConf" placeholder="Confirm password" required />
+        <button type="button" class="btnRegister" btn>Sign up</button>
+      </form>
     </div>
-    <script>
-      const emailValidator = (email) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-      const passwordValidator = (pass) => {
-        if(/(\w(6))/.test(pass)){
-          
-        }
-        /*
-        longitud mínima, mayúsculas,
-minúsculas, números y caracteres especiales
-        */
+
+    <div class="login">
+      <form id="formLogin">
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="email" id="emailLogin" name="email" placeholder="Email" required />
+        <input type="password" name="pswd" placeholder="Password" required />
+        <button type="button" class="btnLogin">Login</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has("error")) {
+      console.log("Pedro la chupa");
+    }
+
+
+    const emailValidator = (email) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    const passwordValidator = (pass) => {
+      if (/(\w(6))/.test(pass)) {
 
       }
-      $(".signup").on("click", ".btnRegister", function (e) {
-        $.ajax({
-          type: "post",
-          url: "../../server/crud/loginUser.php",
-          data: $("#formLogin").serialize(),
-          success: function (response) {
-            console.log(response);
-          },
-        });
+      /*
+      longitud mínima, mayúsculas,
+minúsculas, números y caracteres especiales
+      */
+
+    }
+    $(".signup").on("click", ".btnRegister", function (e) {
+      $.ajax({
+        type: "post",
+        url: "../../server/crud/registerUser.php",
+        data: $("#formLogin").serialize(),
+        success: function (response) {
+          console.log(response);
+        },
       });
-      $(".login").on("click", ".btnLogin", function (e) {
-        $.ajax({
-          type: "post",
-          url: "../../server/crud/loginUser.php",
-          data: $("#formLogin").serialize(),
-          success: function (response) {
-            console.log(response);
-          },
-        });
+    });
+    $(".login").on("click", ".btnLogin", function (e) {
+      console.log($("#formLogin").serialize());
+      $.ajax({
+        type: "post",
+        url: "../../server/crud/loginUser.php",
+        data: $("#formLogin").serialize(),
+        success: function (response) {
+          let res
+          if (response === "true") {
+            res = "../"
+          } else {
+            res = "./index.html?error"
+          }
+          window.location.href = res
+
+
+          console.log("entra");
+          console.log(response);
+        },
       });
-    </script>
-    <!-- Pills content -->
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    });
+  </script>
+  <!-- Pills content -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

@@ -7,3 +7,14 @@ $user = $_POST["email"];
 $pass = md5($_POST["pswd"]);
 
 $ddbb = new Crud();
+$resultado = mysqli_fetch_assoc($ddbb->loginUser([$user, $pass]));
+
+
+if ($resultado) {
+  session_start();
+  $_SESSION["user"] = $resultado["usuario"];
+  $_SESSION["rol"] = $resultado["rol"];
+  echo $_SESSION["user"];
+  exit();
+}
+echo "false";

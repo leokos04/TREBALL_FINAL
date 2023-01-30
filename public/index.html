@@ -30,14 +30,17 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item user">
             <a class="nav-link" href="./usuario/">Perfil</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item admin">
             <a class="nav-link" href="./administrador/">Administrador</a>
           </li>
         </ul>
-        <div class="d-flex me-1">
+        <div class="d-flex me-1 login" >
+          <a class="btn text-light" href="./login/" style="background-color: #b7094c; margin: 0 auto">Login</a>
+        </div>
+        <div class="d-flex me-1 logout" >
           <a class="btn text-light" href="./login/" style="background-color: #b7094c; margin: 0 auto">Login</a>
         </div>
       </div>
@@ -59,20 +62,6 @@
             <label for="exampleInputEmail1">Grupo</label>
             <input type="text" class="form-control" id="grupo" />
           </div>
-          <div class="form-group">
-            <label class="text-white">Inicio</label>
-            <input type="date" class="form-control text-dark" />
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Pais</label>
-            <select class="custom-select form-select">
-              <option selected disabled>...</option>
-              <option value="1">Español</option>
-              <option value="2">Ingles</option>
-              <option value="3">Peruana</option>
-            </select>
-          </div>
-
           <br />
 
           <div style="text-align: center">
