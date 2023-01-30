@@ -14,7 +14,7 @@ if ($resultado) {
   session_start();
   $_SESSION["user"] = $resultado["usuario"];
   $_SESSION["rol"] = $resultado["rol"];
-  echo $_SESSION["user"];
+  echo "../";
   exit();
 }
-echo "false";
+echo "./index.html?error";

@@ -45,7 +45,7 @@
     const urlParams = new URLSearchParams(window.location.search);
 
     if (urlParams.has("error")) {
-      console.log("Pedro la chupa");
+      alert("falta editar el error")
     }
 
 
@@ -71,23 +71,12 @@ minúsculas, números y caracteres especiales
       });
     });
     $(".login").on("click", ".btnLogin", function (e) {
-      console.log($("#formLogin").serialize());
       $.ajax({
         type: "post",
         url: "../../server/crud/loginUser.php",
         data: $("#formLogin").serialize(),
         success: function (response) {
-          let res
-          if (response === "true") {
-            res = "../"
-          } else {
-            res = "./index.html?error"
-          }
-          window.location.href = res
-
-
-          console.log("entra");
-          console.log(response);
+          window.location.href = response;
         },
       });
     });
