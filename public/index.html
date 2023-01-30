@@ -99,7 +99,7 @@
         console.log(response);
         Array.from(response).forEach((ele) => {
           $(
-            `<div class='col-md-3 carta' style='width:400px;'><img src='../server/img/${ele.imagen}' width='200px'><p>${ele.nombre}</p><h3>${ele.grupo} ${ele.fecha_creacion}</h3><button value='${ele.id}' class='btn previsualizar text-light' style='background-color:#b7094c;'>Previsualizar</button></div>`
+            `<div class='col-md-3 carta' style='width:400px;'><img src='../server/img/${ele.imagen}' style='height:200px;width:200px'><p>${ele.nombre}</p><h3>${ele.grupo} ${ele.fecha_creacion}</h3><button value='${ele.id}' class='btn previsualizar text-light' style='background-color:#b7094c;'>Previsualizar</button></div>`
           ).appendTo(".listaMusica");
         });
         $(`.carta`).on("click", ".previsualizar", function () {
