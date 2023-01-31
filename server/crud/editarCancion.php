@@ -47,7 +47,7 @@ if ($image["error"] != 0) {
     echo "Solo se permiten imágenes en formato JPEG, JPG o PNG";
     exit();
   }
-  if (comprobarSiExiste("imagen", $image["name"]) <= 1) {
+  if (comprobarSiExiste("imagen", $nameImageActual) <= 1) {
     unlink(ROOT_PATH . "img/$nameImageActual");
   }
   move_uploaded_file($image["tmp_name"], ROOT_PATH . "img/" . $image['name']);
@@ -60,7 +60,7 @@ if ($mp3["error"] != 0) {
     echo "Solo se permiten archivos de audio en formato MP3";
     exit();
   }
-  if (comprobarSiExiste("mp3", $mp3["name"]) <= 1) {
+  if (comprobarSiExiste("mp3", $nameMp3Actual) <= 1) {
     unlink(ROOT_PATH . "music/$nameMp3Actual");
   }
   move_uploaded_file($mp3["tmp_name"], ROOT_PATH . "music/" . $mp3['name']);
