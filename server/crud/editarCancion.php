@@ -8,7 +8,7 @@ require_once ROOT_PATH . "crud/crud.php";
 function comprobarSiExiste($tabla, $nombre)
 {
   $ddbb = new Crud();
-  return $ddbb->getRows("SELECT COUNT(*) FROM `canciones` WHERE $tabla = '$nombre'");
+  return $ddbb->getRows("SELECT COUNT(*) as C FROM `canciones` WHERE $tabla = '$nombre'")->fetch_assoc()["C"];
 }
 
 
@@ -31,7 +31,7 @@ if (
   echo "Faltan campos por completar";
   exit();
 }
-if(empty($quantity)){
+if (empty($quantity)) {
   $quantity = 0;
 }
 
@@ -68,4 +68,3 @@ if ($mp3["error"] != 0) {
 
 $ddbb = new Crud();
 $ddbb->editCancion($id, $name, $artist, $country, $date, $quantity, $image["name"], $mp3["name"]);
-
