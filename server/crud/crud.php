@@ -43,4 +43,18 @@ class Crud
     return $mySQL->query($sql);
     
   }
+  public function registerUser($data)
+  {
+    $sqlconnection = new Connection();
+    $mySQL = $sqlconnection->getConnection();
+    $sql = "INSERT INTO `usuarios` (`id`, `usuario`, `email`, `user_pass`, `rol`) VALUES (NULL, '$data[0]', '$data[1]', '$data[2]', 'user');";
+    $mySQL->query($sql);
+  }
+  public function searchMail($email)
+  {
+    $sqlconnection = new Connection();
+    $mySQL = $sqlconnection->getConnection();
+    $sql = "SELECT * FROM `usuarios` WHERE email = '$email'";
+    $mySQL->query($sql);
+  }
 }

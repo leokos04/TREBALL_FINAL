@@ -64,9 +64,13 @@ minúsculas, números y caracteres especiales
       $.ajax({
         type: "post",
         url: "../../server/crud/registerUser.php",
-        data: $("#formLogin").serialize(),
+        data: $("#formRegister").serialize(),
         success: function (response) {
-          console.log(response);
+          if(response){
+            console.log(response);
+          }else{
+            window.location.href = "../"
+          }
         },
       });
     });
