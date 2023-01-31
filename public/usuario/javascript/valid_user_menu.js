@@ -11,9 +11,7 @@ $(document).ready(function () {
   function estadoSession(response) {
     switch (response) {
       case "0":
-        $(".user").hide();
-        $(".admin").hide();
-        $(".btnlogout").hide();
+        window.location.href = "../"
         break;
       case "1":
         $(".user").show();

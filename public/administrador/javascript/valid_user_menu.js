@@ -1,4 +1,3 @@
-$(document).ready(function () {
   $.ajax({
     type: "post",
     url: "../../server/crud/controlSesion.php",
@@ -11,15 +10,10 @@ $(document).ready(function () {
   function estadoSession(response) {
     switch (response) {
       case "0":
-        $(".user").hide();
-        $(".admin").hide();
-        $(".btnlogout").hide();
+        window.location.href = "../"
         break;
       case "1":
-        $(".user").show();
-        $(".admin").hide();
-        $(".btnlogin").hide();
-        $(".btnlogout").show();
+        window.location.href = "../"
         break;
       case "2":
         $(".user").show();
@@ -29,5 +23,3 @@ $(document).ready(function () {
         break;
     }
   }
-
-})
