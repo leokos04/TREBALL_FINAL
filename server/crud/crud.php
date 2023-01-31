@@ -55,6 +55,6 @@ class Crud
     $sqlconnection = new Connection();
     $mySQL = $sqlconnection->getConnection();
     $sql = "SELECT * FROM `usuarios` WHERE email = '$email'";
-    $mySQL->query($sql);
+    return $mySQL->query($sql);
   }
 }
