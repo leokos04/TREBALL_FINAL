@@ -40,10 +40,12 @@
           </li>
         </ul>
         <div class="d-flex me-1">
-          <a class="btn text-light btnlogin" href="../login/" style="background-color: #b7094c; margin: 0 auto">Login</a>
+          <a class="btn text-light btnlogin" href="../login/"
+            style="background-color: #b7094c; margin: 0 auto">Login</a>
         </div>
         <div class="d-flex me-1 logout">
-          <a class="btn text-light btnlogout" href="../../server/crud/logout.php" style="background-color: #b7094c; margin: 0 auto">Log out</a>
+          <a class="btn text-light btnlogout" href="../../server/crud/logout.php"
+            style="background-color: #b7094c; margin: 0 auto">Log out</a>
         </div>
       </div>
     </div>
@@ -53,10 +55,11 @@
     <div class="row">
       <div class="col-6">
         <img src="" class="img-fluid imgPrincipal d-block mx-auto" alt="">
+        <button class="btn reservar btn-primary d-block mx-auto mt-4">Reservar</button>
+
       </div>
       <div class="col-6">
         <div id="datos">
-          <button class="btn reservar btn-primary">Reservar</button>
         </div>
       </div>
     </div>
@@ -64,21 +67,37 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const product = urlParams.get('id')
-    $.ajax({
-      type: "get",
-      url: "../../server/crud/searchById.php",
-      data: { id: product },
-      dataType: "json",
-      success: function (response) {
-        $(".imgPrincipal").attr({
-          alt: response.nombre,
-          src: "../../server/img/" + response.imagen
-        }).css({ width: "400px", border: "1px solid red" })
-        $(`<h1>${response.nombre}</h1><h3>${response.grupo}</h3><p>Creada en ${response.fecha_creacion} en ${response.pais}</p><p>Cantidad disponible : ${response.cantidad}</p>`).appendTo("#datos")
-        console.log(response);
-      }
-    });
+    const recagarWeb = (id) => {
+      $.ajax({
+        type: "get",
+        url: "../../server/crud/searchById.php",
+        data: { id: id },
+        dataType: "json",
+        success: function (response) {
+          $("#datos").empty();
+          $(".imgPrincipal").attr({
+            alt: response.nombre,
+            src: "../../server/img/" + response.imagen
+          }).css({ width: "400px", border: "1px solid red" })
+          $(`<h1>${response.nombre}</h1><h3>${response.grupo}</h3><p>Creada en ${response.fecha_creacion} en ${response.pais}</p><p>Cantidad disponible : ${response.cantidad}</p>`).appendTo("#datos")
+        }
+      });
+    }
+    recagarWeb(product)
 
+  </script>
+  <script>
+    $(".reservar").click(function () {
+      $.ajax({
+        type: "post",
+        url: "../../server/crud/reservar.php",
+        data: { id: product },
+        success: function (response) {
+          recagarWeb(product)
+          
+        }
+      });
+    });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

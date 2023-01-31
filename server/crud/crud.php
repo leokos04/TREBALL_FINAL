@@ -57,4 +57,18 @@ class Crud
     $sql = "SELECT * FROM `usuarios` WHERE email = '$email'";
     return $mySQL->query($sql);
   }
+  public function setReserva($id)
+  {
+    $sqlconnection = new Connection();
+    $mySQL = $sqlconnection->getConnection();
+    $sql = $sql = "UPDATE canciones SET cantidad = cantidad - 1 WHERE id = $id";
+    $mySQL->query($sql);
+  }
+  public function getReserva($id)
+  {
+    $sqlconnection = new Connection();
+    $mySQL = $sqlconnection->getConnection();
+    $sql = $sql = "UPDATE canciones SET cantidad = cantidad - 1 WHERE id = $id";
+    $mySQL->query($sql);
+  }
 }
