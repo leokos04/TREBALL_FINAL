@@ -15,6 +15,7 @@
     crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="../css/index.css" />
+  <script type="module" src="./javascript/validation_reserva.js"></script>
   <script src="./javascript/valid_user_menu.js"></script>
 
 </head>
@@ -65,40 +66,10 @@
     </div>
   </div>
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const product = urlParams.get('id')
-    const recagarWeb = (id) => {
-      $.ajax({
-        type: "get",
-        url: "../../server/crud/searchById.php",
-        data: { id: id },
-        dataType: "json",
-        success: function (response) {
-          $("#datos").empty();
-          $(".imgPrincipal").attr({
-            alt: response.nombre,
-            src: "../../server/img/" + response.imagen
-          }).css({ width: "400px", border: "1px solid red" })
-          $(`<h1>${response.nombre}</h1><h3>${response.grupo}</h3><p>Creada en ${response.fecha_creacion} en ${response.pais}</p><p>Cantidad disponible : ${response.cantidad}</p>`).appendTo("#datos")
-        }
-      });
-    }
-    recagarWeb(product)
+    
 
   </script>
-  <script>
-    $(".reservar").click(function () {
-      $.ajax({
-        type: "post",
-        url: "../../server/crud/reservar.php",
-        data: { id: product },
-        success: function (response) {
-          recagarWeb(product)
-          
-        }
-      });
-    });
-  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>

@@ -8,6 +8,7 @@ $username = $_POST["txt"];
 $email = $_POST["email"];
 $pass = md5($_POST["pswd"]);
 $passConf = md5($_POST["pswdConf"]);
+
 //VALIDACION CAMPOS LLENOS
 if(empty($username) || empty($email) || empty($pass) || empty($passConf)){
   echo "Rellene todos los campos";
@@ -26,7 +27,7 @@ if($pass != $passConf){
 $ddbb = new Crud();
 $emailFound = $ddbb->searchMail($email);
 //VALIDACION SI EXISTE EL CORREO ELECTRONICO
-if($emailFound){
+if($emailFound != 0){
   echo "Ya hay existente ese correo electronico";
   exit();
 }

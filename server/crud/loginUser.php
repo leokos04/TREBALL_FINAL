@@ -12,7 +12,7 @@ $resultado = mysqli_fetch_assoc($ddbb->loginUser([$user, $pass]));
 
 if ($resultado) {
   session_start();
-  $_SESSION["user"] = $resultado["usuario"];
+  $_SESSION["user"] = $resultado["email"];
   $_SESSION["rol"] = $resultado["rol"];
   echo "../";
   exit();

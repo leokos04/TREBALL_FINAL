@@ -41,7 +41,6 @@ class Crud
     $mySQL = $sqlconnection->getConnection();
     $sql = "SELECT * FROM `usuarios` WHERE email = '$data[0]' and user_pass = '$data[1]'";
     return $mySQL->query($sql);
-    
   }
   public function registerUser($data)
   {
@@ -54,21 +53,28 @@ class Crud
   {
     $sqlconnection = new Connection();
     $mySQL = $sqlconnection->getConnection();
-    $sql = "SELECT * FROM `usuarios` WHERE email = '$email'";
-    return $mySQL->query($sql);
+    $sql = "SELECT COUNT(*) as C FROM `usuarios` WHERE email = '$email'";
+    return $mySQL->query($sql)->fetch_assoc()["C"];
   }
   public function setReserva($id)
   {
     $sqlconnection = new Connection();
     $mySQL = $sqlconnection->getConnection();
-    $sql = $sql = "UPDATE canciones SET cantidad = cantidad - 1 WHERE id = $id";
+    $sql = "UPDATE canciones SET cantidad = cantidad - 1 WHERE id = $id";
     $mySQL->query($sql);
   }
   public function getReserva($id)
   {
     $sqlconnection = new Connection();
     $mySQL = $sqlconnection->getConnection();
-    $sql = $sql = "UPDATE canciones SET cantidad = cantidad - 1 WHERE id = $id";
+    $sql = "UPDATE canciones SET cantidad = cantidad - 1 WHERE id = $id";
+    $mySQL->query($sql);
+  }
+  public function setReservaUserMusic($idUser, $idCancion)
+  {
+    $sqlconnection = new Connection();
+    $mySQL = $sqlconnection->getConnection();
+    $sql = "INSERT INTO `reserva` (`id`, `id_usuario`, `id_cancion`, `fecha_adquision`) VALUES (NULL, '$idUser', '$idCancion', CURRENT_TIMESTAMP) ";
     $mySQL->query($sql);
   }
 }
