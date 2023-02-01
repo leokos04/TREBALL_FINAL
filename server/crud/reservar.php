@@ -7,8 +7,10 @@ session_start();
 $id = $_POST['id'];
 
 $bbdd = new Crud();
-$bbdd->setReserva($id);
-
 $correo = $_SESSION["user"];
-$resultado = mysqli_fetch_assoc($bbdd->getRows("SELECT * from usuarios where email = '$correo'")); 
-$bbdd->setReservaUserMusic($resultado["id"],$id);
+
+if (!empty($correo)) {
+  $bbdd->setReserva($id);
+  $resultado = mysqli_fetch_assoc($bbdd->getRows("SELECT * from usuarios where email = '$correo'"));
+  $bbdd->setReservaUserMusic($resultado["id"], $id);
+}

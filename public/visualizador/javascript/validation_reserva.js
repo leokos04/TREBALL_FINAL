@@ -32,7 +32,7 @@ $(document).ready(function () {
       dataType: "text",
       success: function (res) {
         comprobacionUser(res);
-        if (resultado != "0") {
+        if (res != "0") {
           $.ajax({
             type: "post",
             url: "../../server/crud/reservar.php",

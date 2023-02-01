@@ -63,12 +63,15 @@ class Crud
     $sql = "UPDATE canciones SET cantidad = cantidad - 1 WHERE id = $id";
     $mySQL->query($sql);
   }
-  public function getReserva($id)
+  public function getReserva($correo)
   {
     $sqlconnection = new Connection();
     $mySQL = $sqlconnection->getConnection();
-    $sql = "UPDATE canciones SET cantidad = cantidad - 1 WHERE id = $id";
-    $mySQL->query($sql);
+    $sql = "SELECT `usuarios`.`email` ,reserva.fecha_adquision,canciones.*
+            FROM canciones
+            INNER JOIN reserva ON canciones.id = `reserva`.`id_cancion`
+            INNER JOIN usuarios ON reserva.id_usuario = usuarios.id WHERE `usuarios`.`email` = '$correo'";
+    return ($mySQL->query($sql)); 
   }
   public function setReservaUserMusic($idUser, $idCancion)
   {
@@ -77,4 +80,5 @@ class Crud
     $sql = "INSERT INTO `reserva` (`id`, `id_usuario`, `id_cancion`, `fecha_adquision`) VALUES (NULL, '$idUser', '$idCancion', CURRENT_TIMESTAMP) ";
     $mySQL->query($sql);
   }
+
 }
