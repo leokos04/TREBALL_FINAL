@@ -67,7 +67,7 @@ class Crud
   {
     $sqlconnection = new Connection();
     $mySQL = $sqlconnection->getConnection();
-    $sql = "SELECT `usuarios`.`email` ,reserva.fecha_adquision,canciones.*
+    $sql = "SELECT `usuarios`.`email` ,reserva.id as reservaID,reserva.fecha_adquision,canciones.*
             FROM canciones
             INNER JOIN reserva ON canciones.id = `reserva`.`id_cancion`
             INNER JOIN usuarios ON reserva.id_usuario = usuarios.id WHERE `usuarios`.`email` = '$correo'";
@@ -80,5 +80,13 @@ class Crud
     $sql = "INSERT INTO `reserva` (`id`, `id_usuario`, `id_cancion`, `fecha_adquision`) VALUES (NULL, '$idUser', '$idCancion', CURRENT_TIMESTAMP) ";
     $mySQL->query($sql);
   }
-
+  public function delReservaUserMusic($idReserva,$idMsusic)
+  {
+    $sqlconnection = new Connection();
+    $mySQL = $sqlconnection->getConnection();
+    $sqlDel = "DELETE FROM `reserva` WHERE id = '$idReserva'";
+    $mySQL->query($sqlDel);
+    $sqlUpd = "UPDATE canciones SET cantidad = cantidad + 1 WHERE id = $idMsusic";
+    $mySQL->query($sqlUpd);
+  }
 }

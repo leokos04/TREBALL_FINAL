@@ -1,0 +1,9 @@
+.carta{
+  margin: 0 auto;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border: 1px solid black;
+  text-align: center;
+  width: 400px;
+}
