@@ -31,7 +31,7 @@
 
     <link rel="stylesheet" href="./css/index.css" />
     <script src="./javascript/valid_user_menu.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
   <body>
@@ -70,10 +70,20 @@
             </li>
           </ul>
           <div class="d-flex me-1 login">
-            <a class="btn text-light btnlogin" href="../login/" style="background-color: #b7094c; margin: 0 auto">Login</a>
+            <a
+              class="btn text-light btnlogin"
+              href="../login/"
+              style="background-color: #b7094c; margin: 0 auto"
+              >Login</a
+            >
           </div>
           <div class="d-flex me-1 logout">
-            <a class="btn text-light btnlogout" href="../../server/crud/logout.php" style="background-color: #b7094c; margin: 0 auto">Log out</a>
+            <a
+              class="btn text-light btnlogout"
+              href="../../server/crud/logout.php"
+              style="background-color: #b7094c; margin: 0 auto"
+              >Log out</a
+            >
           </div>
         </div>
       </div>
@@ -182,11 +192,18 @@
                 url: "../../server/crud/deleteById.php",
                 data: { id: $(this).val() },
                 success: function (response) {
-                    recargaTabla();
+                  if (response) {
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: response,
+                    });
+                  }
+                  recargaTabla();
                 },
-                error : function (xhr) { 
-                  console.log(xhr.statusText , xhr.responseText);
-                 }
+                error: function (xhr) {
+                  console.log(xhr.statusText, xhr.responseText);
+                },
               });
             }
           });
@@ -202,8 +219,8 @@
               dataType: "json",
               success: function (response) {
                 $("#id-ed").val(response.id);
-                $("#img-name-ed").val(response.imagen)
-                $("#mp3-name-ed").val(response.mp3)
+                $("#img-name-ed").val(response.imagen);
+                $("#mp3-name-ed").val(response.mp3);
                 $("#name-ed").val(response.nombre);
                 $("#artist-ed").val(response.grupo);
                 $("#country-ed").val(response.pais);
@@ -239,12 +256,12 @@
                   processData: false, // tell jQuery not to process the data
                   contentType: false, // tell jQuery not to set contentType
                   success: function (response) {
-                    if(response){
-                      alert(response)
+                    if (response) {
+                      alert(response);
                     }
                     $("#form-edit").trigger("reset");
-                    $("#add-file-dialog").dialog("close")
-                    recargaTabla()
+                    $("#add-file-dialog").dialog("close");
+                    recargaTabla();
                   },
                 });
               },

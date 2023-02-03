@@ -12,23 +12,29 @@ function comprobarSiExiste($tabla, $nombre)
 $id = $_POST["id"];
 $dataBase = new Crud();
 
-$resultado =  mysqli_fetch_assoc($dataBase->getRows("SELECT * FROM canciones where id=$id"));
+$resultadoImagen = mysqli_fetch_assoc($dataBase->getRows("SELECT * FROM canciones where id=$id"));
+$existeReserva = $dataBase->getRows("SELECT COUNT(*) as C FROM canciones INNER JOIN reserva ON canciones.id = `reserva`.`id_cancion` INNER JOIN usuarios ON reserva.id_usuario = usuarios.id WHERE `canciones`.`id` = $id")->fetch_assoc()["C"];
 
-if ( comprobarSiExiste("imagen", $resultado["imagen"]) <= 1) {
-  try {
-    unlink(ROOT_PATH . "img/" . $resultado['imagen']);
-  } catch (\Throwable $th) {
-    echo $th;
-  }
-}
-if (comprobarSiExiste("mp3", $resultado["mp3"]) <= 1) {
-  try {
-    //code...
-    unlink(ROOT_PATH . "music/" . $resultado['mp3']);
-  } catch (\Throwable $th) {
-    //throw $th;
-    echo $th;
-  }
-}
 
-$dataBase->deleteCancion($id);
+
+if ($existeReserva <= 0) {
+  if (comprobarSiExiste("imagen", $resultadoImagen["imagen"]) <= 1) {
+    try {
+      unlink(ROOT_PATH . "img/" . $resultadoImagen['imagen']);
+    } catch (\Throwable $th) {
+      echo $th;
+    }
+  }
+  if (comprobarSiExiste("mp3", $resultadoImagen["mp3"]) <= 1) {
+    try {
+      //code...
+      unlink(ROOT_PATH . "music/" . $resultadoImagen['mp3']);
+    } catch (\Throwable $th) {
+      //throw $th;
+      echo $th;
+    }
+  }
+  $dataBase->deleteCancion($id);
+}else{
+  echo "Hay una relacion entre esa musica y un usuario";
+}
