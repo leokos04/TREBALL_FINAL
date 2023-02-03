@@ -38,10 +38,5 @@ move_uploaded_file($image["tmp_name"], ROOT_PATH . "img/" . $image['name']);
 move_uploaded_file($mp3["tmp_name"], ROOT_PATH . "music/" . $mp3['name']);
 
 $ddbb = new Crud();
-$result = $ddbb->addCancion($name, $artist, $country, $date, $quantity, $image["name"], $mp3["name"]);
+$ddbb->addCancion($name, $artist, $country, $date, $quantity, $image["name"], $mp3["name"]);
 
-if ($result) {
-  echo true;
-} else {
-  echo false;
-}

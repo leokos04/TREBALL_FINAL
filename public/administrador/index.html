@@ -32,8 +32,8 @@
     <link rel="stylesheet" href="./css/index.css" />
     <script src="./javascript/valid_user_menu.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./javascript/form_add_del_upd.js"></script>
   </head>
-
   <body>
     <!-- EMPIEZA MENU -->
     <nav
@@ -88,11 +88,11 @@
         </div>
       </div>
     </nav>
-    <script src="./javascript/valid_user_menu.js"></script>
-
     <!-- TERMINA MENU -->
 
+    <!-- BODY PAGE -->
     <div class="container-fluid">
+
       <!-- AÑADIR FORMULARIO  -->
       <form id="form-add" enctype="multipart/form-data">
         <div class="form-group">
@@ -140,6 +140,7 @@
         </button>
       </form>
       <!-- AÑADIR FORMULARIO  -->
+      
       <!-- ! PARA MOSTRAR TABLA -->
       <br /><br />
       <br /><br />
@@ -161,154 +162,7 @@
         <tbody></tbody>
       </table>
     </div>
-    <script>
-      $(document).ready(function () {
-        const tablasPintar = (arrObj) => {
-          //Nota para el futuro regranjero de yo la de quitar todos los eventos para luego añadirlos y no se repitan conocetela ^^
-          $("#tablaSQL").off("click");
-
-          $("#tablaSQL tbody").empty().html("");
-          for (let i = 0; i < arrObj.length; i++) {
-            $("#tablaSQL tbody").append(
-              `<tr>
-        <td>${arrObj[i].id}</td>
-        <td>${arrObj[i].nombre}</td>
-        <td>${arrObj[i].grupo}</td>
-        <td>${arrObj[i].pais}</td>
-        <td>${arrObj[i].fecha_creacion}</td>
-        <td>${arrObj[i].cantidad}</td>
-        <td>${arrObj[i].imagen}</td>
-        <td>${arrObj[i].mp3}</td>
-        <td><button class='delete' value='${arrObj[i].id}'>Eliminar</button></td>
-        <td><button class='editar' value='${arrObj[i].id}'>Editar</button></td>
-        </tr>`
-            );
-          }
-          //DELETE TABLE  ---->
-          $("#tablaSQL").on("click", ".delete", function () {
-            if (confirm("¿Estas seguro que quieres eliminarlo?")) {
-              $.ajax({
-                type: "post",
-                url: "../../server/crud/deleteById.php",
-                data: { id: $(this).val() },
-                success: function (response) {
-                  if (response) {
-                    Swal.fire({
-                      icon: "error",
-                      title: "Oops...",
-                      text: response,
-                    });
-                  }
-                  recargaTabla();
-                },
-                error: function (xhr) {
-                  console.log(xhr.statusText, xhr.responseText);
-                },
-              });
-            }
-          });
-          //DELETE TABLE  ---->
-
-          //DIALOG --->
-
-          $("#tablaSQL").on("click", ".editar", function () {
-            $.ajax({
-              type: "get",
-              url: "../../server/crud/searchById.php",
-              data: { id: $(this).val() },
-              dataType: "json",
-              success: function (response) {
-                $("#id-ed").val(response.id);
-                $("#img-name-ed").val(response.imagen);
-                $("#mp3-name-ed").val(response.mp3);
-                $("#name-ed").val(response.nombre);
-                $("#artist-ed").val(response.grupo);
-                $("#country-ed").val(response.pais);
-                $("#date-ed").val(response.fecha_creacion);
-                $("#quantity-ed").val(response.cantidad);
-
-                $(".img-previsualizar").empty().append(`
-              <p>Imagen actual :</p>
-              <img class='imgDialog' alt='${response.imagen}' src='../../server/img/${response.imagen}' width='100px' style='border:1px solid black;'>
-              `);
-
-                $(".audio-add-prueba").empty().append(`
-              <p>Audio acutal :</p>
-              <audio controls>
-                <source id='${response.mp3}' class='audio-ed' src="../../server/music/${response.mp3}" type="audio/mpeg">
-              </audio>`);
-              },
-            });
-            $("#add-file-dialog").dialog("open");
-          });
-
-          $("#add-file-dialog").dialog({
-            autoOpen: false,
-            width: 600,
-            modal: true,
-            buttons: {
-              "Edit music": function () {
-                let formData = new FormData($("#form-edit")[0]);
-                $.ajax({
-                  type: "post",
-                  url: "../../server/crud/editarCancion.php",
-                  data: formData,
-                  processData: false, // tell jQuery not to process the data
-                  contentType: false, // tell jQuery not to set contentType
-                  success: function (response) {
-                    if (response) {
-                      alert(response);
-                    }
-                    $("#form-edit").trigger("reset");
-                    $("#add-file-dialog").dialog("close");
-                    recargaTabla();
-                  },
-                });
-              },
-              Cancel: function () {
-                $(".audio-add-prueba").empty();
-                $(this).dialog("close");
-              },
-            },
-          });
-        };
-
-        const recargaTabla = () => {
-          $.ajax({
-            type: "get",
-            url: "../../server/crud/showCancion.php",
-            dataType: "json",
-            success: function (response) {
-              tablasPintar(response);
-            },
-          });
-        };
-        recargaTabla();
-
-        $(".btnadd").click(function (e) {
-          //PARA RECOGER LOS ARCHIVOS INCLUIDOS
-          var formData = new FormData($("#form-add")[0]);
-          $.ajax({
-            type: "post",
-            url: "../../server/crud/anadirCancion.php",
-            data: formData,
-            contentType: false,
-            processData: false,
-            cache: false,
-            success: function (response) {
-              console.log(response);
-              $("#form-add").trigger("reset");
-              recargaTabla();
-            },
-            error: function (err) {
-              console.log(`${err.statusText} , ${err.responseText}`);
-            },
-          });
-        });
-
-        //fin ready
-      });
-    </script>
+ 
     <div id="add-file-dialog" title="Editar">
       <form id="form-edit" class="text-center" enctype="multipart/form-data">
         <input type="hidden" name="id" id="id-ed" value="" />
