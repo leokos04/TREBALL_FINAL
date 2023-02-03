@@ -17,7 +17,13 @@
   <link rel="stylesheet" href="../css/index.css" />
   <script type="module" src="./javascript/validation_reserva.js"></script>
   <script src="./javascript/valid_user_menu.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+  <style>
+    #datos{
+      text-align: left;
+    }
+  </style>
 </head>
 
 <body>
@@ -56,12 +62,10 @@
     <div class="row">
       <div class="col-6">
         <img src="" class="img-fluid imgPrincipal d-block mx-auto" alt="">
-        <button class="btn reservar btn-primary d-block mx-auto mt-4">Reservar</button>
-
+        <button class="btn-lg reservar d-block mx-auto mt-4 text-light" style="background-color: #b7094c;">Reservar</button>
       </div>
       <div class="col-6">
-        <div id="datos">
-        </div>
+        <div id="datos"></div>
       </div>
     </div>
   </div>

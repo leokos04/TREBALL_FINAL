@@ -16,6 +16,7 @@
 
   <link rel="stylesheet" href="./css/index.css" />
   <script src="./javascript/valid_user_menu.js"></script>
+  <script src="./javascript/index.js"></script>
 
 </head>
 
@@ -77,26 +78,7 @@
       </div>
     </div>
   </div>
-  <script>
-    $.ajax({
-      type: "get",
-      url: "../server/crud/showCancion.php",
-      dataType: "json",
-      success: function (response) {
-        console.log(response);
-        Array.from(response).forEach((ele) => {
-          if (ele.cantidad > 0) {
-            $(
-              `<div class='col-md-3 carta' style='width:300px;border-radius: 30px;'><img src='../server/img/${ele.imagen}' style='height:200px;width:200px'><p>Nombre : ${ele.nombre}</p><h4>Grupo : ${ele.grupo}</h4><button value='${ele.id}' class='btn previsualizar text-light' style='background-color:#b7094c;'>Previsualizar</button></div>`
-            ).appendTo(".listaMusica");
-          }
-        });
-        $(`.carta`).on("click", ".previsualizar", function () {
-          window.location.href = "./visualizador/index.html?id=" + $(this).val()
-        })
-      },
-    });
-  </script>
+
   <script src="./javascript/filtros_busqueda.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

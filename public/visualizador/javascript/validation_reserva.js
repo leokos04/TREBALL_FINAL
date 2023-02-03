@@ -16,10 +16,21 @@ $(document).ready(function () {
             alt: response.nombre,
             src: "../../server/img/" + response.imagen,
           })
-          .css({ width: "400px", border: "1px solid red" });
+          .css({ width: "400px", height:"400px" });
         $(
-          `<h1>${response.nombre}</h1><h3>${response.grupo}</h3><p>Creada en ${response.fecha_creacion} en ${response.pais}</p><p>Cantidad disponible : ${response.cantidad}</p>`
+        `<h1>Musica : ${response.nombre}</h1>
+        <h3>Grupo : ${response.grupo}</h3>
+        <p>Creada en ${response.fecha_creacion} en ${response.pais}</p>
+        <p>Cantidad disponible : ${response.cantidad}</p>
+        <p></p>
+        <audio controls>
+          <source id='${response.mp3}' class='audio-ed' src="../../server/music/${response.mp3}" type="audio/mpeg">
+        </audio>
+        `
         ).appendTo("#datos");
+        if(response.cantidad == 0){
+          $(".reservar").unbind().addClass("disabled")
+        }
       },
     });
   };
@@ -39,8 +50,15 @@ $(document).ready(function () {
             data: { id: product },
             success: function (response) {
               recagarWeb(product);
+              Swal.fire({
+                icon: 'success',
+                title: 'Se ha reservado correctamente!!',
+                showConfirmButton: false,
+                timer: 1000
+              })
             },
           });
+        
         }
       },
     });
