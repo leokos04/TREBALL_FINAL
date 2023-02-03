@@ -35,6 +35,6 @@ if ($existeReserva <= 0) {
     }
   }
   $dataBase->deleteCancion($id);
-}else{
+} else {
   echo "Hay una relacion entre esa musica y un usuario";
 }
