@@ -16,7 +16,7 @@ $(document).ready(function () {
             alt: response.nombre,
             src: "../../server/img/" + response.imagen,
           })
-          .css({ width: "400px", height:"400px" });
+          .css({ width: "300px" });
         $(
         `<h1>Musica : ${response.nombre}</h1>
         <h3>Grupo : ${response.grupo}</h3>

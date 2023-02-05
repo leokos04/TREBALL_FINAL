@@ -15,7 +15,9 @@
   <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./index.css" />
-  <script src="sweetalert2.all.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  
 </head>
 
 <body>
@@ -26,8 +28,8 @@
       <form id="formRegister">
         <label for="chk" aria-hidden="true">Sign up</label>
         <input type="text" name="txt" placeholder="User name" required />
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="password" name="pswd" placeholder="Password" required />
+        <input type="email" id="emailva" name="email" placeholder="Email" required />
+        <input type="password" id="passwd" name="pswd" placeholder="Password" required />
         <input type="password" name="pswdConf" placeholder="Confirm password" required />
         <button type="button" class="btnRegister" btn>Sign up</button>
       </form>
@@ -44,34 +46,68 @@
   </div>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-
     if (urlParams.has("error")) {
-      alert("falta editar el error")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error en Email o la Contraseña ',
+      })
+
     }
+
 
 
     const emailValidator = (email) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     const passwordValidator = (pass) => {
+      if (pass.length < 8) return "Tiene que tener minimo 8 de longitud la contraseña.";
+      if (!/[A-Z]/.test(pass)) return "Tiene que tener la contraseña una mayuscula.";
+      if (!/[a-z]/.test(pass)) return "Tiene que tener la contraseña una minuscula.";
+      if (!/[0-9]/.test(pass)) return "Tiene que tener la contraseña un numero.";
+      if (!/[!@#$%^&*]/.test(pass)) return "Tiene que tener la contraseña un caracter especial.";
+      return false;
+    };
 
-      /*
-      longitud mínima, mayúsculas,
-minúsculas, números y caracteres especiales
-      */
 
-    }
+
     $(".signup").on("click", ".btnRegister", function (e) {
-      $.ajax({
+      let k = true;
+      let pass = passwordValidator($("#passwd").val())
+      let email = emailValidator($("#emailva").val())
+
+      if (pass) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: pass,
+        })
+        k=false;
+      }
+      if (!email) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "Email not valid!",
+        })
+        k=false;
+      }
+      if(k){
+        $.ajax({
         type: "post",
         url: "../../server/crud/registerUser.php",
         data: $("#formRegister").serialize(),
         success: function (response) {
-          if(response){
-            console.log(response);
-          }else{
+          if (response) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: response,
+            })
+          } else {
             window.location.href = "../"
           }
         },
       });
+      }
     });
     $(".login").on("click", ".btnLogin", function (e) {
       $.ajax({

@@ -17,4 +17,4 @@ if ($resultado) {
   echo "../";
   exit();
 }
-echo "./index.html?error";
+echo "./?error";

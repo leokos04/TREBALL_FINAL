@@ -1,29 +1,14 @@
-$(document).ready(function (param) {
-
-  $("#grupo").on("input", function () {
-    let searchValue = $(this).val().toLowerCase();
-    if (!searchValue ) {
+$(document).ready(function () {
+  $("#grupo, #musica").on("input", function () {
+    let musicaGrupo = $("#grupo").val().toLowerCase();
+    let musicaName = $("#musica").val().toLowerCase();
+    if (!musicaGrupo && !musicaName) {
       $(".carta").show();
     } else {
       $(".carta").each(function () {
-        let songName = $(this).find("h4").text().toLowerCase();
-        if (songName.includes(searchValue)) {
-          $(this).show()
-        } else {
-          $(this).hide();
-        }
-      });
-    }
-  });
-
-  $("#musica").on("input", function () {
-    let searchValue = $(this).val().toLowerCase();
-    if (!searchValue) {
-      $(".carta").show();
-    } else {
-      $(".carta").each(function () {
-        let songName = $(this).find("p").text().toLowerCase();
-        if (songName.includes(searchValue)) {
+        let grupoH4 = $(this).find("h4").text().toLowerCase();
+        let nameP = $(this).find("p").text().toLowerCase();
+        if (grupoH4.includes(musicaGrupo) && nameP.includes(musicaName)) {
           $(this).show()
         } else {
           $(this).hide();
