@@ -3,6 +3,12 @@ include_once __DIR__ . "/../constant.php";
 require_once ROOT_PATH . "connection/conexion.php";
 require_once ROOT_PATH . "crud/crud.php";
 
+/**
+ * Funcion que retorna el numero de elementos que existen en una tabla.
+ * 
+ * @param tabla Nombre de la tabla busqueda
+ * @param nombre Nombre de la busqueda del elemento
+ */
 function comprobarSiExiste($tabla, $nombre)
 {
   $ddbb = new Crud();
@@ -18,6 +24,7 @@ $existeReserva = $dataBase->getRows("SELECT COUNT(*) as C FROM canciones INNER J
 
 
 if ($existeReserva <= 0) {
+  //Comprueba en la tabla imagen si hay más de 1 elemento 
   if (comprobarSiExiste("imagen", $resultadoImagen["imagen"]) <= 1) {
     try {
       unlink(ROOT_PATH . "img/" . $resultadoImagen['imagen']);
@@ -25,6 +32,7 @@ if ($existeReserva <= 0) {
       echo $th;
     }
   }
+
   if (comprobarSiExiste("mp3", $resultadoImagen["mp3"]) <= 1) {
     try {
       //code...
@@ -34,6 +42,7 @@ if ($existeReserva <= 0) {
       echo $th;
     }
   }
+
   $dataBase->deleteCancion($id);
 } else {
   echo "Hay una relacion entre esa musica y un usuario";

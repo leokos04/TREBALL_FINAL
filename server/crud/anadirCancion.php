@@ -3,7 +3,6 @@ include_once __DIR__ . "/../constant.php";
 require_once ROOT_PATH . "connection/conexion.php";
 require_once ROOT_PATH . "crud/crud.php";
 
-/* Checking if any of the fields are empty. If they are, it will display an error message. */
 if (
   empty($_POST["name"]) || empty($_POST["artist"]) || empty($_POST["country"]) ||
   empty($_POST["date"]) || empty($_POST["quantity"]) || empty($_FILES["image"]) || empty($_FILES["mp3"])
@@ -24,7 +23,6 @@ $mp3 = $_FILES["mp3"];
 $allowed_image_types = array("image/jpeg", "image/jpg", "image/png");
 $allowed_mp3_types = array("audio/mpeg");
 
-/* Validaciones de tipo para los input tipo file */
 if (!in_array($image["type"], $allowed_image_types)) {
   echo "Solo se permiten imágenes en formato JPEG, JPG o PNG";
   exit();
@@ -36,7 +34,6 @@ if (!in_array($mp3["type"], $allowed_mp3_types)) {
 }
 
 // Mover archivos a la carpeta correspondiente
-/* Moving the files to the corresponding folder. */
 move_uploaded_file($image["tmp_name"], ROOT_PATH . "img/" . $image['name']);
 move_uploaded_file($mp3["tmp_name"], ROOT_PATH . "music/" . $mp3['name']);
 

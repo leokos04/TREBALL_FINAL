@@ -20,23 +20,25 @@ $(document).ready(function () {
   </tr>`
       );
     }
+
     //DELETE TABLE  ---->
+
     $("#tablaSQL").on("click", ".delete", function () {
       Swal.fire({
-        title: '¿Estas seguro que quieres eliminarlo?',
+        title: "¿Estas seguro que quieres eliminarlo?",
         text: "No podras revertirlo más adelante",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Borrar'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Borrar",
       }).then((result) => {
+        /**
+         *  En caso de confirmar el dialog,
+         *  realizara un ajax donde en enviara el valor del boton (id).
+         **/
         if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
           $.ajax({
             type: "post",
             url: "../../server/crud/deleteById.php",
@@ -56,10 +58,7 @@ $(document).ready(function () {
             },
           });
         }
-      })
-
-
-     
+      });
     });
     //DELETE TABLE  ---->
 
@@ -93,9 +92,9 @@ $(document).ready(function () {
         </audio>`);
         },
       });
-      setTimeout(()=>{
+      setTimeout(() => {
         $("#add-file-dialog").dialog("open");
-      },10)
+      }, 10);
     });
 
     //DIALOGO DE EDITAR
@@ -115,19 +114,19 @@ $(document).ready(function () {
             success: function (response) {
               if (response) {
                 Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
+                  icon: "error",
+                  title: "Oops...",
                   text: response,
-                })
-              }else{
+                });
+              } else {
                 Swal.fire({
-                  icon: 'success',
-                  title: 'Se ha editado correctamente!!',
+                  icon: "success",
+                  title: "Se ha editado correctamente!!",
                   showConfirmButton: false,
-                  timer: 1500
-                })
+                  timer: 1500,
+                });
               }
-            
+
               $("#form-edit").trigger("reset");
               $("#add-file-dialog").dialog("close");
               recargaTabla();
@@ -142,6 +141,7 @@ $(document).ready(function () {
     });
   };
 
+  // Función donde recargo las tablas sin el uso de recarga de la pagina
   const recargaTabla = () => {
     $.ajax({
       type: "get",
@@ -154,9 +154,10 @@ $(document).ready(function () {
   };
   recargaTabla();
 
-  //Boton de añadir 
+  //Boton de añadir
   $(".btnadd").click(function (e) {
     var formData = new FormData($("#form-add")[0]);
+    
     $.ajax({
       type: "post",
       url: "../../server/crud/anadirCancion.php",
@@ -164,23 +165,23 @@ $(document).ready(function () {
       contentType: false,
       processData: false,
       cache: false,
-      dataType:"text",
+      dataType: "text",
       success: function (response) {
         Swal.fire({
-          icon: 'success',
-          title: 'Se ha añadido correctamente!!',
+          icon: "success",
+          title: "Se ha añadido correctamente!!",
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 1500,
+        });
         $("#form-add").trigger("reset");
         recargaTabla();
       },
       error: function (err) {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Error al añadir...',
-        })
+          icon: "error",
+          title: "Oops...",
+          text: "Error al añadir...",
+        });
         console.log(`${err.statusText} , ${err.responseText}`);
       },
     });
