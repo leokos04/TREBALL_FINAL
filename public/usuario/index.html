@@ -75,6 +75,8 @@
           dataType: "json",
           success: function (response) {
             $("#reservas").empty().off("click");
+            $("#datos").empty()
+            $(`<h1>${response[0].email}</h1>`).appendTo("#datos")
 
             Array.from(response).forEach((ele) => {
               $(
