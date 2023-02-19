@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  /* Ajax recoge la pagina principal los datos del servidor. Al pulsar click pasara el id al apartado visualizador
+     para hacer la reserva.
+   */
   $.ajax({
     type: "get",
     url: "../server/crud/showCancion.php",
@@ -11,9 +14,15 @@ $(document).ready(function () {
           ).appendTo(".listaMusica");
         }
       });
+
+      const darkmode = localStorage.getItem('darkmode');
+      if (darkmode === 'true') {
+        $(".carta").addClass("carta-dark");
+      }
+
       $(`.carta`).on("click", ".previsualizar", function () {
         window.location.href = "./visualizador/index.html?id=" + $(this).val()
       })
     },
-  });  
+  });
 });

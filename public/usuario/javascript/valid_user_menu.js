@@ -9,6 +9,7 @@ $(document).ready(function () {
   });
 
   function estadoSession(response) {
+    //Validacion de tipo de usuario para el apartado del menu
     switch (response) {
       case "0":
         window.location.href = "../"

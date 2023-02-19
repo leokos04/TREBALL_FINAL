@@ -1,25 +1,29 @@
-// Obtener el estado actual del modo
-let mode = localStorage.getItem("mode") || "light";
+document.addEventListener("DOMContentLoaded", function () { // $(document).ready(()=>{})
+  const checkBoxDarkMode = document.querySelector('#darkmode');
 
-// Cambiar el modo
-const changeMode = (mode) => {
-  if (mode === "light") {
-    document.documentElement.style.setProperty("--text-color", "#333");
-    document.documentElement.style.setProperty("--background-color", "#fff");
-    localStorage.setItem("mode", "light");
+  //Checkbox eventListener on change , if is checked le añadimos el darkmode al body por que soy un perro que le encanta el css
+  //y añadimos al localstorage como true(SE PASA AL STRING)
+
+  checkBoxDarkMode.addEventListener('change', function () {
+    if (checkBoxDarkMode.checked) {
+      document.body.classList.add('darkmode');
+      $(".carta").addClass("carta-dark");
+      localStorage.setItem('darkmode', true);
+
+    } else {
+      document.body.classList.remove('darkmode');
+      $(".carta").removeClass("carta-dark");
+      localStorage.setItem('darkmode', false);
+    }
+  });
+
+  const darkmode = localStorage.getItem('darkmode');
+//En caso de tenga valor el localStorage y sea true automaticamente se pondra en darkmdoe
+  if (darkmode === 'true') {
+    checkBoxDarkMode.checked = true;
+    document.body.classList.add('darkmode');
   } else {
-    document.documentElement.style.setProperty("--text-color", "#fff");
-    document.documentElement.style.setProperty("--background-color", "#333");
-    localStorage.setItem("mode", "dark");
+    checkBoxDarkMode.checked = false;
+    $(".carta").removeClass("carta-dark");
   }
-};
-
-// Inicializar el modo
-changeMode(mode);
-
-// Escuchar el evento de cambio de modo
-const toggle = document.querySelector(".toggle");
-toggle.addEventListener("click", () => {
-  mode = localStorage.getItem("mode") === "light" ? "dark" : "light";
-  changeMode(mode);
 });

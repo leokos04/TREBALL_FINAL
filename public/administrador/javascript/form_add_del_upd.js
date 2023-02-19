@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+
   const tablasPintar = (arrObj) => {
     //Nota para el futuro regranjero de yo la de quitar todos los eventos para luego añadirlos y no se repitan conocetela ^^
     $("#tablaSQL").off("click");

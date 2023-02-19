@@ -1,0 +1,11 @@
+
+.carta-dark {
+  background-color: #212529;
+  color: white;
+  border: 1px solid black;
+}
+
+body.darkmode {
+  background-color: black;
+  color: white;
+}

@@ -12,13 +12,15 @@
 .derecha {
   height: 100vh;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 .izquierda{
   height: auto;
 }
 
 .derecha {
-  overflow-x: hidden;
+  height: calc(100vh - 65px);
+  overflow: auto;
 }
 .carta{
   margin: 0 auto;
