@@ -1,0 +1,18 @@
+https://leokos.com.es/prototipo/public/
+
+admin 
+user : leokos004@gmail.com
+pass : alumno1234
+
+
+user 
+user : prueba@gmail.es
+pass : alumno1234
+
+
+
+server\connection\conexion.php
+
+Conexion al servidor : 
+user : root
+pass : bbdd
