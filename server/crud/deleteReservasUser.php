@@ -5,6 +5,7 @@ require_once ROOT_PATH . "crud/crud.php";
 
 $idMusica = $_POST["id_musica"];
 $idReserva = $_POST["id_reserva"];
+//Elimina la reserva de la musica y del user
 
 if(!empty($idMusica) && !empty($idReserva)){
   $bbdd = new Crud();

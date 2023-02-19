@@ -99,7 +99,7 @@ $(document).ready(function () {
       }, 10);
     });
 
-    //DIALOGO DE EDITAR
+    //DIALOGO DE EDITAR CONFIGURACION
     $("#add-file-dialog").dialog({
       autoOpen: false,
       width: 600,

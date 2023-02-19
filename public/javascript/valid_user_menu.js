@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+  //Control de sesiones para el menu 
   $.ajax({
     type: "post",
     url: "../server/crud/controlSesion.php",

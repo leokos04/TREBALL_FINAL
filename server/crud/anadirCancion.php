@@ -3,6 +3,7 @@ include_once __DIR__ . "/../constant.php";
 require_once ROOT_PATH . "connection/conexion.php";
 require_once ROOT_PATH . "crud/crud.php";
 
+//En caso que sean emptys algunos de los campos devolvera un mensaje de que falta por completar
 if (
   empty($_POST["name"]) || empty($_POST["artist"]) || empty($_POST["country"]) ||
   empty($_POST["date"]) || empty($_POST["quantity"]) || empty($_FILES["image"]) || empty($_FILES["mp3"])

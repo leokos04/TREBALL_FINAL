@@ -15,11 +15,13 @@ $(document).ready(function () {
         }
       });
 
+      //Modo oscuro en cada apartado del prototipo
       const darkmode = localStorage.getItem('darkmode');
       if (darkmode === 'true') {
         $(".carta").addClass("carta-dark");
       }
 
+      //Al hacer click a la carta recoge el id que este contenga y lo redirecciona al apartado de visualizar de cada cancion
       $(`.carta`).on("click", ".previsualizar", function () {
         window.location.href = "./visualizador/index.html?id=" + $(this).val()
       })

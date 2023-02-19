@@ -45,6 +45,7 @@
     </div>
   </div>
   <script>
+    //Recogemos el url, en caso de que contenga error, significa que el usuario a insertado credenciales errneos
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("error")) {
       Swal.fire({
@@ -56,7 +57,7 @@
     }
 
 
-
+    //reg ex validator 3000 
     const emailValidator = (email) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     const passwordValidator = (pass) => {
       if (pass.length < 8) return "Tiene que tener minimo 8 de longitud la contraseña.";
@@ -70,11 +71,15 @@
 
 
     $(".signup").on("click", ".btnRegister", function (e) {
+      /*
+      Al apretar el registro pasara por las validaciones del registro de la parte de arriba, en caso de que la variable k no sea true no hara una peticion query al servidor
+      */
       let k = true;
       let pass = passwordValidator($("#passwd").val())
       let email = emailValidator($("#emailva").val())
 
       if (pass) {
+        //En caso de texto y no sea false mostrara el texto por dialogo
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -83,6 +88,7 @@
         k=false;
       }
       if (!email) {
+        //En caso false mostrara el texto por dialogo
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -91,6 +97,8 @@
         k=false;
       }
       if(k){
+        //En la parte del servidor realizara otra validacion de confirmacion y al confirmar que el correo no exista en la base de datos y las contraseñas sean valdias
+        //redireccionara al home, en caso contrario mostrara un error con la respuesta del servidor
         $.ajax({
         type: "post",
         url: "../../server/crud/registerUser.php",
@@ -110,6 +118,7 @@
       }
     });
     $(".login").on("click", ".btnLogin", function (e) {
+      //Validaciones en el apartado del servidor loginUser.php
       $.ajax({
         type: "post",
         url: "../../server/crud/loginUser.php",

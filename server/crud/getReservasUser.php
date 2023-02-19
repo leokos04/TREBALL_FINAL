@@ -7,6 +7,8 @@ session_start();
             FROM canciones
             INNER JOIN reserva ON canciones.id = `reserva`.`id_cancion`
             INNER JOIN usuarios ON reserva.id_usuario = usuarios.id WHERE `usuarios`.`email` = '$correo' */
+
+//Recojo las reservas de la sesion iniciada
 $bbdd = new Crud();
 $correo = $_SESSION["user"];
 if (!empty($correo)) {

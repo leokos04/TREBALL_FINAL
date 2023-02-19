@@ -21,6 +21,10 @@
   <link rel="stylesheet" href="../css/dark.css" />
   <script src="../change_color.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 
 </head>
@@ -66,8 +70,18 @@
     <div class="row">
       <div class="col-4">
         <div id="datos">
-          <button class='btn text-light' style='background-color:#b7094c;'>Reservarss</button>
+
+
         </div>
+        <button id="pdf" class='btn text-light' style='background-color:#b7094c;'>Reservars</button>
+        <script>
+          //FALTA POR AL HACER CLICK QUE DESAPAREZCAN TODOS ES DECIR SIMULAR QUE YA 100% ESTAN RESERVADOS 19-02-2023 
+          // https://ekoopmans.github.io/html2pdf.js/#cdn
+          
+          $("#pdf").click("on", function () {
+            html2pdf(document.getElementById('reservas'));
+          })
+        </script>
       </div>
       <div class="col-8">
         <h3 style="margin: 0 auto; text-align: center;">Reservas realizadas :</h3>

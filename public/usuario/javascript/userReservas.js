@@ -20,12 +20,13 @@ $(document).ready(function () {
           ).appendTo("#reservas");
         });
 
-    
+        //Modo oscuro
         const darkmode = localStorage.getItem('darkmode');
         if (darkmode === 'true') {
           $(".carta").addClass("carta-dark");
         }
 
+        //Cancela la reserva , peticcion al servidor para que elimine esa reserva y recarga la tabla de nuevo
         $(`.carta`).on("click", ".cancelReserva", function () {
           let id = $(this).val();
           let idReserva = $(this).data("idreserva");
